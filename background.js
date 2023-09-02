@@ -1,7 +1,7 @@
 const url = window.location.href;
 
 const match1 = url.match(/contest\/(\d+)/);
-const match2 = url.match(/problemset\/problems\/(\d+)/);
+const match2 = url.match(/problemset\/problem\/(\d+)/);
 var contestNumber = null
 
 if (match1) contestNumber = match1[1];
