@@ -21,5 +21,8 @@
         ],
           "js": [ "background.js" ]
         }
+    ],
+    "permissions": [
+        "storage"
     ]
 }
