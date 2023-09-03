@@ -11,7 +11,7 @@ You just have to clone [this repo](https://github.com/dhanrajchaurasia/CF-Get-Pr
 **UPD:** To use this without unpacking the extension just copy-paste [this userscript](https://p.ip.fi/0-SH) in [tampermonkey](https://www.tampermonkey.net/) or a similar tool.
 
 
-**UP2:** Updated the verdict thing as well. You can enter your codeforces handle to make verdict color work! 
+**UPD2:** Updated the verdict thing as well. You can enter your codeforces handle to make verdict color work! 
  
 ![ ](https://codeforces.com/predownloaded/ae/cf/aecfc34169e53331f5b50cf12620872fa8b50b04.png)
 
