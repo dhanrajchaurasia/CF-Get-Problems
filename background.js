@@ -9,16 +9,18 @@ else if (match2) contestNumber = match2[1];
 else contestNumber = -1
 
 const requestURL = `https://codeforces.com/api/contest.standings?contestId=${contestNumber}&from=1&count=1`;
-var requestURL2 = "";
-chrome.storage.local.get(['userHandle'], function(result) {
-    if (chrome.runtime.lastError) {
-        console.error(chrome.runtime.lastError);
-    } else {
+var showRating = false, requestURL2 = "";
+chrome.storage.local.get(['userHandle'], function(result){
+    if (!chrome.runtime.lastError) {
         var userHandle = result.userHandle;
         requestURL2 = `https://codeforces.com/api/contest.status?contestId=${contestNumber}&handle=${userHandle}`;
     }
 }); 
-
+chrome.storage.local.get(['showRating'], function(result){
+    if (!chrome.runtime.lastError && result.showRating != undefined) {
+        showRating = result.showRating;
+    }
+});
 fetchData();
 async function fetchData(){
     const Verdict = {
@@ -81,13 +83,30 @@ async function fetchData(){
             toInsert += `
             <span style="width:3em; margin: 2px; text-align: center; box-sizing: border-box;">
                 <a title="${e.title}" href="${e.url}" style="color:${e.verdict}">${e.index}</a>
-                <br><span class="small" title="Problem Rating">${e.rating == null ? '-' : e.rating}</span>
-            </span>
-            `
+                <br><span class="small" title="Problem Rating">${e.rating == null || !showRating ? '-' : e.rating}</span>
+            </span>`
         });
-        toInsert += '</div></div>'
+        toInsert += `
+            </div>
+            <div class="smaller" style="margin: 1em; text-align:center;">
+            <input id="change-hide-tag-status" type="checkbox" ${showRating ? "" : "checked"}>
+            <label for="change-hide-tag-status" style="vertical-align: top">Hide Rating</label>
+            </div>
+            </div>`
     }
     const getProblemBox = document.createElement("div");
     getProblemBox.innerHTML = toInsert;
     document.querySelector("#sidebar").prepend(getProblemBox);
+    const checkBox = document.getElementById('change-hide-tag-status');
+    checkBox.addEventListener('click', function () {
+        chrome.storage.local.get(['showRating'], function(result){
+            if (!chrome.runtime.lastError) {
+                var showRating = result.showRating;
+                showRating = !showRating;
+                chrome.storage.local.set({ showRating: showRating }, function () {});
+                checkBox.checked = showRating;
+                location.reload();
+            }
+        });
+    });
 }
