@@ -1,5 +1,8 @@
 <h1 align="center">CF Get Problems</h1>
 
+[![image](https://github.com/dhanrajchaurasia/CF-Get-Problems/assets/81418590/1bbf2fef-3a41-4646-b445-a76f135ed9da)](https://addons.mozilla.org/en-GB/firefox/addon/cf-get-problems/)
+
+
 With the help of this extension, one can go through any problem to any other problem easily (also can go to a problem from status/submission/hack pages to the desired problem).
 ![ ](https://codeforces.com/predownloaded/c2/f3/c2f322cbc6ebb0f626de15e103e8a976bf84db2e.png)
 
